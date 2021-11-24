@@ -214,7 +214,5 @@ export default {
   filterData,
   getImages
 };
-function next(error: unknown, req: Request<import("express-serve-static-core").ParamsDictionary, any, any, import("qs").ParsedQs, Record<string, any>>, res: Response<any, Record<string, any>>) {
-  throw new Error("Function not implemented.");
-}
+
 
