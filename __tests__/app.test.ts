@@ -2,17 +2,14 @@ import request from "supertest";
 import app from "../src/app";
 import { MongoMemoryServer } from "mongodb-memory-server";
 import mongoose from "mongoose";
-import { fakeImage } from "../src/utils/data";
+import { fakeImage, fakeAddImage } from "../src/utils/data";
 import Image from "../src/models/image";
-
 
 describe("app test", () => {
   test("my first test", async () => {
     console.log("first test");
   });
 });
-
-
 
 // use done way
 describe("Test the root path", () => {
@@ -49,8 +46,6 @@ describe("Test the root path", () => {
 //   });
 // });
 
-
-
 describe("It shuld be get methoad", () => {
   beforeAll(async () => {
     const mongoServer = await MongoMemoryServer.create();
@@ -63,7 +58,7 @@ describe("It shuld be get methoad", () => {
     await mongoose.connection.close();
   });
 
-  it("get all image url", async () => {
+  it("should return a 200 & get image by id", async () => {
     const image = await Image.create(fakeImage);
     console.log("image", image);
 
@@ -78,5 +73,12 @@ describe("It shuld be get methoad", () => {
     expect(body.data.title).toBe(image.title);
   });
 
- 
+  it("Should return a 201 & create a image", async () => {
+    const { body, statusCode } = await request(app)
+      .post(`/api/v1/add-image-url`)
+      .send(fakeAddImage);
+
+    expect(statusCode).toBe(201);
+    expect(body.data.imageFullURL).toEqual( fakeAddImage.imageFullURL);
+  });
 });
