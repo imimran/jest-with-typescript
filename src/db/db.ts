@@ -9,7 +9,7 @@ import { MONGO_URL } from "../config/config";
 // }
 
 const connectDB = () => {
-  const db = mongoose.connect(MONGO_URL)
+   mongoose.connect(MONGO_URL)
 
   console.log('Connected to the mongodb');
   const conection = mongoose.connection

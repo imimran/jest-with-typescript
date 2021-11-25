@@ -55,7 +55,7 @@ describe("Image CRUD operation test", () => {
   });
 
 
-  test.only("should return a 200 & get image by id", async () => {
+  test("should return a 200 & get image by id", async () => {
     const image = await Image.create(fakeImage);
     // console.log("image", image);
 
@@ -92,3 +92,34 @@ describe("Image CRUD operation test", () => {
 
   
 });
+
+
+
+// import request from "supertest";
+// import app from "../src/app";
+// import mongoose from "mongoose";
+// import Image from "../src/models/image";
+// import * as ImageService from "../src/services/imageService";
+
+// const imageId = new mongoose.Types.ObjectId().toString();
+// const imageInput = {
+//   _id: imageId,
+//   imageFullURL:
+//     "http://localhost:4000/photo-1508919801845-fc2ae1bc2a28-04_09_2021_01_41_05.jpeg",
+// };
+
+// describe("Add image test case", () => {
+//   test("return data", async () => {
+//     jest.setTimeout(10000) 
+//     const createImageServiceMock = jest.spyOn(ImageService, "createImage").mockReturnThis()
+
+//     const { body, statusCode } = await request(app)
+//       .post(`/api/v1/add-image-url`)
+//       .send(imageInput);
+//     expect(statusCode).toBe(201);
+//     console.log("createImageServiceMock", createImageServiceMock.mockReturnThis);
+    
+
+//     expect(createImageServiceMock).toHaveBeenCalledWith(imageInput);
+//   });
+// });

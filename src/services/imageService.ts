@@ -7,6 +7,14 @@ export const allImages = async () => {
     return all;
 }
 
+export const createImage = async (input: any) => {
+
+      const image = await Image.create(input);
+  
+      return image;
+   
+  }
+
 
 
   

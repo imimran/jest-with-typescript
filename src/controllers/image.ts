@@ -3,7 +3,7 @@ import Image from "../models/image";
 import { APP_URL } from "../config/config";
 import path from "path";
 import fs from "fs";
-import { allImages } from "../services/imageService";
+import { allImages, createImage } from "../services/imageService";
 
  const getImages = async (req: Request, res: Response) => {
   // const images = await Image.find({}).sort({ date: -1 });
@@ -116,9 +116,12 @@ const addImageByLink = async (req: Request, res: Response) => {
     return res
       .status(201)
       .json({ error: false, msg: "Add Succesfully", data: image });
+
+    // const image = await createImage(req.body);
+
+    // return res.status(201).send(image);
   } catch (error) {
-    console.log(error);
-    return res.status(200).json({ error: true, msg: "Server Error" });
+    return res.status(500).json({ error: true, msg: "Server Error" });
   }
 };
 
